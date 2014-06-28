@@ -6,7 +6,7 @@ module JqueryDatepicker
 
     # Mehtod that generates datepicker input field inside a form
     def datepicker(object_name, method, options = {}, timepicker = false)
-      input_tag =  JqueryDatepicker::InstanceTag.new(object_name, method, self, options.delete(:object))
+      input_tag =  JqueryDatepicker::InstanceTag.new(object_name, method, self, options.delete(:object) { {} })
       html, dp_options = input_tag.render
       method = timepicker ? "datetimepicker" : "datepicker"
       html += javascript_tag("jQuery(document).ready(function(){jQuery('##{input_tag.get_name_and_id["id"]}').#{method}(#{dp_options.to_json})});")
