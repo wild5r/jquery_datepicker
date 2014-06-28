@@ -70,8 +70,8 @@ class JqueryDatepicker::InstanceTag
     options = @options.stringify_keys
     dp_options, tf_options = split_options(options)
     tf_options['value'] = format_date(tf_options['value'], String.new(dp_options['dateFormat'])) if  tf_options['value'] && !tf_options['value'].empty? && dp_options.has_key?('dateFormat')
-    add_default_name_and_id(options)
-    return tag("text", tf_options), dp_options
+    add_default_name_and_id(tf_options)
+    return tag("input", tf_options), dp_options
   end
 
   class << self
