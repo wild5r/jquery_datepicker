@@ -6,7 +6,7 @@ module JqueryDatepicker
 
     # Mehtod that generates datepicker input field inside a form
     def datepicker(object_name, method, options = {}, timepicker = false)
-      input_tag =  JqueryDatepicker::InstanceTag.new(object_name, method, self, options.delete(:object) { {} })
+      input_tag =  JqueryDatepicker::InstanceTag.new(object_name, method, self, options)
       html, dp_options = input_tag.render
       method = timepicker ? "datetimepicker" : "datepicker"
       html += javascript_tag("jQuery(document).ready(function(){jQuery('##{input_tag.get_name_and_id["id"]}').#{method}(#{dp_options.to_json})});")
@@ -43,7 +43,7 @@ class JqueryDatepicker::InstanceTag
     add_default_name_and_id(options)
     options
   end
-  
+
   def available_datepicker_options
     ['disabled', 'altField', 'altFormat', 'appendText', 'autoSize', 'buttonImage', 'buttonImageOnly', 'buttonText', 'calculateWeek', 'changeMonth', 'changeYear', 'closeText', 'constrainInput', 'currentText', 'dateFormat', 'dayNames', 'dayNamesMin', 'dayNamesShort', 'defaultDate', 'duration', 'firstDay', 'gotoCurrent', 'hideIfNoPrevNext', 'isRTL', 'maxDate', 'minDate', 'monthNames', 'monthNamesShort', 'navigationAsDateFormat', 'nextText', 'numberOfMonths', 'prevText', 'selectOtherMonths', 'shortYearCutoff', 'showAnim', 'showButtonPanel', 'showCurrentAtPos', 'showMonthAfterYear', 'showOn', 'showOptions', 'showOtherMonths', 'showWeek', 'stepMonths', 'weekHeader', 'yearRange', 'yearSuffix']
   end
